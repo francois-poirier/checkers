@@ -8,18 +8,19 @@ import org.junit.Test;
 
 import models.Game;
 import models.State;
-import models.StateValue;
+import types.StateValue;
 
 public class CancelControllerTest {
 
 
     @Test
-    public void givenOpenGameStateWhenCancelThenFinishGame() {
+    public void givenOpenedGameStateWhenCancelThenFinishGame() {
         final Game game = new Game();
-        final State state = new State(StateValue.OPEN_GAME);
+        final State state = new State();
+        state.next();
         CancelController sut = new CancelController(game,state);
         sut.cancel();
         assertNotNull(sut.getState());
-        assertEquals(StateValue.FINISH, sut.getState().getStateValue());
+        assertEquals(StateValue.FINAL, sut.getState().getStateValue());
     }
 }

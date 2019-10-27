@@ -1,5 +1,7 @@
 package models;
 
+import types.PieceType;
+
 public abstract class Piece {
 
 	protected Coordinate position;
@@ -17,8 +19,7 @@ public abstract class Piece {
 		return null;
 	}
 
-	public abstract Coordinate getPosition();
-
-	public abstract Piece move(Coordinate source, Coordinate target);
+	public void setType(PieceType type) {
+	}
 
 }

@@ -6,7 +6,7 @@ import models.State;
 public class ResumeController extends AcceptorController {
 
     public ResumeController(Game game, State state) {
-        super(game);
+        super(game,state);
     }
     
     public void resume(boolean newGame) {
@@ -15,4 +15,9 @@ public class ResumeController extends AcceptorController {
 	public State getState() {
 		return null;
 	}
+
+    @Override
+    public void accept(ControllersVisitor controllersVisitor) {
+       controllersVisitor.visit(this);
+    }
 }

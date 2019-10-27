@@ -4,25 +4,30 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import types.StateValue;
+
 public class StateTest {
 
     @Test
     public void givenInitialStateWhenChangeNextThenGoToInGameState() {
-      final State state= new State(StateValue.INITIAL);
+      final State state= new State();
       state.next();
-      assertEquals(StateValue.OPEN_GAME, state.getStateValue());
+      assertEquals(StateValue.OPENED_GAME, state.getStateValue());
     }
 
     @Test
     public void givenInGameStateWhenChangeNextThenGoToFinishState() {
-        final State state= new State(StateValue.OPEN_GAME);
+        final State state= new State();
         state.next();
-        assertEquals(StateValue.FINISH, state.getStateValue());
+        state.next();
+        assertEquals(StateValue.FINAL, state.getStateValue());
     }
 
     @Test
     public void givenFinishStateWhenChangeNextThenGoToExitState() {
-        final State state= new State(StateValue.FINISH);
+        final State state= new State();
+        state.next();
+        state.next();
         state.next();
         assertEquals(StateValue.EXIT, state.getStateValue());
     }
@@ -30,7 +35,9 @@ public class StateTest {
     @Test
     public void givenStateWhenResetThenReturnToInitialState()
     {
-        final State state= new State(StateValue.OPEN_GAME);
+        final State state= new State();
+        state.next();
+        state.next();
         state.reset();
         assertEquals(StateValue.INITIAL, state.getStateValue());
     }

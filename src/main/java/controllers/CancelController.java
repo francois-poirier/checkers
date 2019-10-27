@@ -6,7 +6,7 @@ import models.State;
 public class CancelController extends Controller {
     
     public CancelController(Game game, State state) {
-        super(game);
+        super(game,state);
     }
 
     public void cancel() {

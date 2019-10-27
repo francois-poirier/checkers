@@ -2,12 +2,15 @@ package models;
 
 public class Board {
 
-	public boolean isEndBoard(Coordinate position) {
-		return false;
-	}
+    public Board() {
 
-	public Queen transform(Pawn pawn) {
-		return null;
-	}
+    }
 
+    public Piece getPiece(Coordinate coordinate) {
+        return null;
+    }
+
+    public Error movePiece(Coordinate origin, Coordinate target) {
+        return null;
+    }
 }

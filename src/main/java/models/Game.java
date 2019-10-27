@@ -1,9 +1,13 @@
 package models;
 
-public class Game{
+public class Game {
 
-	public Piece getPiece(Coordinate coordinate) {
+	public Board getBoard() {
 		return null;
 	}
+
+    public Error movePiece(Coordinate origin, Coordinate target) {
+        return null;
+    }
 
 }

@@ -7,14 +7,15 @@ import org.junit.Test;
 
 import models.State;
 import models.Game;
-import models.StateValue;
+import types.StateValue;
 
 public class ResumeControllerTest {
 
     @Test
-    public void givenGameWhenAskNewGameThenReplay() {
+    public void givenOpenedGameWhenResponseNewGameThenReplay() {
         final Game game = new Game();
-        final State state = new State(StateValue.OPEN_GAME);
+        final State state = new State();
+        state.next();
         ResumeController sut = new ResumeController(game, state);
         sut.resume(true);
         assertNotNull(sut.getState());
@@ -22,9 +23,10 @@ public class ResumeControllerTest {
     }
 
     @Test
-    public void givenGameWhenAskFinishGameThenFinish(){
+    public void givenOpenedGameWhenResponseFinishGameThenFinish(){
         final Game game = new Game();
-        final State state = new State(StateValue.OPEN_GAME);
+        final State state = new State();
+        state.next();
         ResumeController sut = new ResumeController(game, state);
         sut.resume(false);
         assertNotNull(sut.getState());

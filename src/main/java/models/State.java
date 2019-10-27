@@ -1,13 +1,16 @@
 package models;
 
+import types.StateValue;
+
 public class State {
 
 	protected StateValue stateValue;
 	
-	public State(StateValue stateValue) {
-		this.stateValue = stateValue;
+	public State() {
+		this.stateValue = StateValue.INITIAL;
 	}
-	
+
+
 	public void next() {
 	
 	}
@@ -19,4 +22,7 @@ public class State {
 		return null;
 	}
 	
+	public void setStateValue(StateValue stateValue) {
+       this.stateValue = stateValue;
+	}
 }

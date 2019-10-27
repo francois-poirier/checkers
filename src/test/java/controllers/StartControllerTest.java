@@ -8,18 +8,18 @@ import org.junit.Test;
 
 import models.Game;
 import models.State;
-import models.StateValue;
+import types.StateValue;
 
 public class StartControllerTest {
 
 
     @Test
-    public void givenInitialStateWhenStartThenStartNewGame() {
+    public void givenInitialGameWhenStartThenStartGame() {
         final Game game = new Game();
-        final State state = new State(StateValue.INITIAL);
+        final State state = new State();
         StartController sut = new StartController(game,state);
         sut.start();
         assertNotNull(sut.getState());
-        assertEquals(StateValue.OPEN_GAME, sut.getState().getStateValue());
+        assertEquals(StateValue.OPENED_GAME, sut.getState().getStateValue());
     }
 }
