@@ -45,7 +45,7 @@ public class CommandView {
 						}
 					} while (error != null);
 					this.console.writeln();
-					new BoardView(playController).write();
+					this.console.writeln(playController.getStringBoard());
 					if (playController.isFinish()) {
 						playController.setState(State.FINAL);
 						this.console.writeln(LOST_GAME);

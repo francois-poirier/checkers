@@ -21,9 +21,6 @@ public class StartViewTest {
 
 	@Mock
 	Console console;
-
-	@Mock
-	BoardView boardView;
 	
 	@InjectMocks
 	StartView startView;
@@ -38,5 +35,6 @@ public class StartViewTest {
 		startView.interact(startController);
 		verify(console).writeln(StartView.INITIAL_MESSAGE);
 		verify(startController).start();
+		verify(startController).getStringBoard();
 	}
 }

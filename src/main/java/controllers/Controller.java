@@ -22,4 +22,8 @@ public abstract class Controller {
 	public Game getGame() {
 		return this.game;
 	}
+	
+	public String getStringBoard() {
+		return this.game.getBoard().toString();
+	}
 }

@@ -17,7 +17,7 @@ public class StartView {
 	void interact(StartController startController){
 		console.writeln(INITIAL_MESSAGE);
 		startController.start();
-		new BoardView(startController).write();
+		this.console.writeln(startController.getStringBoard());
 	}
 	
 }

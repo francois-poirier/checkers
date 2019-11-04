@@ -3,7 +3,6 @@ package controllers;
 import models.Color;
 import models.Coordinate;
 import models.Game;
-import models.Piece;
 import types.Error;
 
 public class PlayController extends AcceptorController {
@@ -37,4 +36,6 @@ public class PlayController extends AcceptorController {
 	public boolean isFinish() {
 		return this.game.isFinish();
 	}
+
+
 }
