@@ -1,32 +1,22 @@
 
 package models;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
-
-import types.PieceType;
-
-import static org.junit.Assert.*;
 
 public class PieceTest {
 
     @Test
-    public void givenPieceWhenAskColorThenReturnValue() {
-        Piece sut = new Pawn(Color.BLACK);
-        assertEquals(Color.BLACK, sut.getColor());
-    }
-
-
-    @Test
-    public void givenPieceWhenAskTypeThenReturnValue() {
-        Piece sut = new Pawn(Color.WHITE);
-        assertEquals(PieceType.PAWN, sut.getType());
+    public void testGivenPieceWhenIsAdvancedThenTrue(){
+        assertTrue(new Piece(Color.WHITE).isAdvanced(new Coordinate(5,0), new Coordinate(4,1)));
+        assertTrue(new Piece(Color.BLACK).isAdvanced(new Coordinate(2,1), new Coordinate(3,2)));
     }
 
     @Test
-    public void givenPieceWhenSetTypeThenInitValueCorrectly() {
-        Piece sut = new Pawn(Color.BLACK);
-        assertEquals("setType(PAWN)", PieceType.PAWN, sut.getType());
-        sut = new Queen(Color.BLACK);
-        assertEquals("setType(QUEEN)", PieceType.QUEEN, sut.getType());
+    public void testGivenPieceWhenNotIsAdvancedThenFalse(){
+        assertFalse(new Piece(Color.WHITE).isAdvanced(new Coordinate(5,0), new Coordinate(6,1)));
+        assertFalse(new Piece(Color.BLACK).isAdvanced(new Coordinate(2,1), new Coordinate(1,2)));
     }
 }

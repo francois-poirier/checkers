@@ -5,18 +5,11 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({
-    PieceTest.class,
-    SquareTest.class,
-    BoardTest.class,
-    CoordinateTest.class,
-    SquareTest.class,
-    StateTest.class,
-    TurnTest.class
-})
+@SuiteClasses({ PieceTest.class, BoardTest.class, GameTest.class, CoordinateTest.class })
 
-public class AllTest{
+public class AllTest {
 
-    public AllTest(){}
+	public AllTest() {
+	}
 
 }

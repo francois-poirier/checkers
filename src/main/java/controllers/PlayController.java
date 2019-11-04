@@ -1,27 +1,40 @@
 package controllers;
 
-import models.Game;
+import models.Color;
 import models.Coordinate;
+import models.Game;
 import models.Piece;
-import models.State;
 import types.Error;
 
-class PlayController extends AcceptorController {
+public class PlayController extends AcceptorController {
 
-    public PlayController(Game game, State state) {
-		super(game,state);
+	private MoveController moveController;
+	private CancelController cancelController;
+	
+    public PlayController(Game game) {
+		super(game);
+		this.moveController = new MoveController(game);
+		this.cancelController = new CancelController(game);
 	}
 
 	public Error move(Coordinate origin, Coordinate target){
-        return null;
+        return moveController.move(origin, target);
     }
 
-	public Piece getPiece(Coordinate origin) {
-		return null;
+	public void cancel() {
+		cancelController.cancel();
 	}
-
+	
 	@Override
 	public void accept(ControllersVisitor controllersVisitor) {
 		controllersVisitor.visit(this);
+	}
+
+	public Color getColor() {
+		return this.game.getTurn().getColor();
+	}
+
+	public boolean isFinish() {
+		return this.game.isFinish();
 	}
 }

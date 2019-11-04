@@ -1,12 +1,11 @@
 package controllers;
 
 import models.Game;
-import models.State;
 
 public abstract class AcceptorController extends Controller {
 
-    AcceptorController(Game game, State state) {
-        super(game,state);
+    AcceptorController(Game game) {
+        super(game);
     }
 
     public abstract void accept(ControllersVisitor controllersVisitor);

@@ -3,25 +3,25 @@ package models;
 public class Turn {
 
     private Color color;
-    
-    public Turn(Color color) {
-        this.color=color;
+
+    Turn(){
+        this.color = Color.WHITE;
+    }
+
+    void change(){
+        this.color = Color.values()[(this.color.ordinal()+1)%2];
+    }
+
+	public boolean isColor(Color color) {
+		return this.color == color;
     }
     
-	public void change() {
-        if (this.color==Color.WHITE) {
-			this.color = Color.BLACK;
-		} else {
-			this.color = Color.WHITE;
-		}
+    public Color getColor() {
+		return color;
 	}
 
-	public boolean isWhiteTurn() {
-		return color == Color.WHITE;
-	}
-
-	public boolean isBlackTurn() {
-		return color == Color.BLACK;
-	}
-
+	@Override
+    public String toString(){
+        return this.color.name();
+    }
 }

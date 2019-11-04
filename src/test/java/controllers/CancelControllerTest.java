@@ -1,26 +1,36 @@
 package controllers;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.verify;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import models.Game;
-import models.State;
-import types.StateValue;
 
+@RunWith(MockitoJUnitRunner.class)
 public class CancelControllerTest {
 
-
+	@Mock
+	private Game game;
+	
+	
+    @InjectMocks
+    private CancelController sut;
+    
+    @Before
+    public void initMocks() {
+        MockitoAnnotations.initMocks(this);
+    }
+    
     @Test
-    public void givenOpenedGameStateWhenCancelThenFinishGame() {
-        final Game game = new Game();
-        final State state = new State();
-        state.next();
-        CancelController sut = new CancelController(game,state);
+    public void givenCancelControllerWhenCancelThenStopGame() {
         sut.cancel();
-        assertNotNull(sut.getState());
-        assertEquals(StateValue.FINAL, sut.getState().getStateValue());
+        verify(game).cancel();
     }
 }

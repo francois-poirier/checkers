@@ -3,21 +3,34 @@ package models;
 public class Square {
 
     private Piece piece;
-    
-    public Square() {
 
+    Square() {
     }
 
-    public boolean isEmpty() {
-        return piece==null;
+    void put(Piece piece) {
+        this.piece = piece;
     }
 
-    public void setPiece(Piece piece) {
-      this.piece = piece;
+    Piece remove() {
+        Piece piece = this.piece;
+        this.piece = null;
+        return piece;
     }
 
-    public Piece getPiece() {
-      return piece;
+    Piece getPiece() {
+        return this.piece;
     }
+
+	public boolean isEmpty() {
+		return this.piece == null;
+	}
+
+	public Color getColor() {
+        if (piece == null){
+            return null;
+        }
+		return this.piece.getColor();
+	}
+
 
 }

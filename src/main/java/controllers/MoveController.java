@@ -1,27 +1,17 @@
 package controllers;
 
-import models.Game;
-import models.Piece;
-import models.State;
-import models.Color;
 import models.Coordinate;
+import models.Game;
 import types.Error;
 
 public class MoveController extends Controller {
 
-    MoveController(Game game, State state) {
-        super(game,state);
+    MoveController(Game game) {
+        super(game);
     }
 
     public Error move(Coordinate origin, Coordinate target) {
-        return null;
+        return game.move(origin, target);
     }
 
-    public Piece getPiece(Coordinate origin) {
-		return null;
-	}
-
-	public Color getWinner() {
-		return null;
-    }
 }

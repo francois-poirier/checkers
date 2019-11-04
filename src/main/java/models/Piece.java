@@ -1,25 +1,28 @@
 package models;
 
-import types.PieceType;
+public class Piece {
 
-public abstract class Piece {
+	private Color color;
 
-	protected Coordinate position;
-	protected Color color;
-	protected PieceType type;
-
-	public Piece(Color color, PieceType pieceType) {
+	Piece(Color color){
+		this.color = color;
 	}
 
 	public Color getColor() {
-		return null;
+		return this.color;
 	}
 
-	public PieceType getType()  {
-		return null;
+	public boolean isBlack() {
+		return this.color == Color.BLACK;
 	}
 
-	public void setType(PieceType type) {
+	
+	public boolean isAdvanced(Coordinate origin, Coordinate target) {
+		int difference = origin.getRow() - target.getRow();
+		if (color == Color.WHITE){
+			return difference>0;
+		}
+		return difference<0;
 	}
 
 }

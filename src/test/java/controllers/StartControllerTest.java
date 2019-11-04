@@ -1,25 +1,41 @@
 package controllers;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import models.Game;
-import models.State;
-import types.StateValue;
+import types.State;
 
+@RunWith(MockitoJUnitRunner.class)
 public class StartControllerTest {
 
 
+	@Mock
+	private Game game;
+	
+
+    @InjectMocks
+    private StartController sut;
+    
+    @Before
+    public void initMocks() {
+        MockitoAnnotations.initMocks(this);
+    }
+    
+
     @Test
-    public void givenInitialGameWhenStartThenStartGame() {
-        final Game game = new Game();
-        final State state = new State();
-        StartController sut = new StartController(game,state);
+    public void givenStartControllerWhenStartThenPlay() {
+    	when(sut.getState()).thenReturn(State.INITIAL);
         sut.start();
-        assertNotNull(sut.getState());
-        assertEquals(StateValue.OPENED_GAME, sut.getState().getStateValue());
+        verify(game).setState(State.OPENED_GAME);
     }
 }

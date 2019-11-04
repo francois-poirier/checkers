@@ -1,35 +1,44 @@
 package controllers;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 
-import models.State;
 import models.Game;
-import types.StateValue;
+import types.State;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ResumeControllerTest {
-
-    @Test
-    public void givenOpenedGameWhenResponseNewGameThenReplay() {
-        final Game game = new Game();
-        final State state = new State();
-        state.next();
-        ResumeController sut = new ResumeController(game, state);
-        sut.resume(true);
-        assertNotNull(sut.getState());
-        assertEquals(StateValue.INITIAL, sut.getState().getStateValue());
+	
+	@Mock
+	private Game game;
+	
+    @InjectMocks
+    private ResumeController sut;
+    
+    @Before
+    public void initMocks() {
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    public void givenOpenedGameWhenResponseFinishGameThenFinish(){
-        final Game game = new Game();
-        final State state = new State();
-        state.next();
-        ResumeController sut = new ResumeController(game, state);
+    public void givenResumeControllerWhenResumeThenReplay() {
+    	when(sut.getState()).thenReturn(State.FINAL);
+        sut.resume(true);
+        verify(game).clear();
+    }
+
+    @Test
+    public void givenResumeControllerWhenNotResumeThenReplay() {
+    	when(sut.getState()).thenReturn(State.FINAL);
         sut.resume(false);
-        assertNotNull(sut.getState());
-        assertEquals(StateValue.EXIT, sut.getState().getStateValue());
+        verify(game).setState(State.EXIT);
     }
 }

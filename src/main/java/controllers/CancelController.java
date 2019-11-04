@@ -1,19 +1,15 @@
 package controllers;
 
 import models.Game;
-import models.State;
 
 public class CancelController extends Controller {
     
-    public CancelController(Game game, State state) {
-        super(game,state);
+    public CancelController(Game game) {
+        super(game);
     }
 
     public void cancel() {
-
+    	game.cancel();
     }
 
-	public State getState() {
-		return null;
-	}
 }
